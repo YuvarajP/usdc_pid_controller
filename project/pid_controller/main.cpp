@@ -297,7 +297,8 @@ int main ()
 
           double steer_output;
           
-          int index = 0;        
+          int index = 0; 
+          double dist_min = 0.0;    
           for(int i=0; i<x_points.size(); ++i){
             //calc distance between planner points and vehicle position
             double distance = pow((x_position - x_points[i]), 2) + pow((y_position - y_points[i]), 2);
