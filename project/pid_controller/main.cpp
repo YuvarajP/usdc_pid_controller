@@ -296,12 +296,30 @@ int main ()
 
 
           double steer_output;
+          
+          int index = 0;        
+          for(int i=0; i<x_points.size(); ++i){
+            //calc distance between planner points and vehicle position
+            double distance = pow((x_position - x_points[i]), 2) + pow((y_position - y_points[i]), 2);
+            
+            if(i == 0){
+              dist_min = distance;
+            }
+            else{
+              // Check if new dist is less than existing min distance
+              if(distance < dist_min){
+                index = i;
+                dist_min = distance;
+              }
+            }
+              
+          }
 
           /**
           * TODO (step 3): compute the steer error (error_steer) from the position and the desired trajectory
           **/
           // The error function is to compute the discrepancy between desired steering angle verus actual angle
-          error_steer = angle_between_points(x_position, y_position, x_points[x_points.size()-1], y_points[y_points.size()-1]) - yaw;
+          error_steer = yaw - angle_between_points(x_position, y_position, x_points[index], y_points[index]);
 
 
           /**
@@ -337,7 +355,7 @@ int main ()
           **/
           // modify the following line for step 2
           // The error function is the discrepancy between desired velocity v/s actual
-          error_throttle = v_points.back() - velocity;
+          error_throttle = velocity - v_points[index];
 
           double throttle_output;
           double brake_output;
