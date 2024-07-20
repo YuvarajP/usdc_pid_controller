@@ -19,12 +19,13 @@ void PID::Init(double Kpi, double Kii, double Kdi, double output_lim_maxi, doubl
    /**
    * TODO: Initialize PID coefficients (and errors, if needed)
    **/
-   this->Kp = Kp;
-   this->Ki = Ki;
-   this->Kd = Kd;
-   this->output_lim_max = output_lim_max;
-   this->output_lim_min = output_lim_min;
+   Kp = Kpi;
+   Ki = Kii;
+   Kd = Kdi;
+   output_lim_max = output_lim_max;
+   output_lim_min = output_lim_min;
    cte0 = 0;
+   delta_time = 0.0;
    I = 0;  
 }
 
