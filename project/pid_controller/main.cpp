@@ -299,7 +299,7 @@ int main ()
 
 
           double steer_output;
-          double dis_min = 10000.0
+          double dis_min = 10000.0;
 	        int close_id = 0;
           /**
           * TODO (step 3): compute the steer error (error_steer) from the position and the desired trajectory
