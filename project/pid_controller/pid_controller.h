@@ -4,68 +4,69 @@
  *      Author: Mathilde Badoual
  **********************************************/
 
-#ifndef PID_CONTROLLER_H
-#define PID_CONTROLLER_H
+#include "pid_controller.h"
+#include <vector>
+#include <iostream>
+#include <math.h>
 
-class PID {
-public:
+using namespace std;
 
+PID::PID() {}
+
+PID::~PID() {}
+
+void PID::Init(double Kpi, double Kii, double Kdi, double output_lim_maxi, double output_lim_mini) {
    /**
-   * TODO: Create the PID class
+   * TODO: Initialize PID coefficients (and errors, if needed)
    **/
-
-    /*
-    * Errors
-    */
-    double cte0; 
-
-    /*
-    * Coefficients
-    */
-    double Kp;
-    double Ki;
-    double Kd;
-    /*
-    * Output limits
-    */
-    double action;
-    double output_lim_max;
-    double output_lim_min;     
-    /*
-    * Delta time
-    */
-    double delta_time, I;
-    /*
-    * Constructor
-    */
-    PID();
-
-    /*
-    * Destructor.
-    */
-    virtual ~PID();
-
-    /*
-    * Initialize PID.
-    */
-    void Init(double Kp, double Ki, double Kd, double output_lim_max, double output_lim_min);
-
-    /*
-    * Update the PID error variables given cross track error.
-    */
-    void UpdateError(double cte);
-
-    /*
-    * Calculate the total PID error.
-    */
-    double TotalError();
+   Kp = Kpi;
+   Ki = Kii;
+   Kd = Kdi;
+     
+   output_lim_max = output_lim_maxi;
+   output_lim_min = output_lim_mini;
   
-    /*
-    * Update the delta time.
-    */
-    double UpdateDeltaTime(double new_delta_time);
-};
+   cte_p = 0.0;
+   cte_i = 0.0;
+   cte_d = 0.0; 
+  
+   dt = 0.0;
+}
 
-#endif //PID_CONTROLLER_H
 
+void PID::UpdateError(double cte) {
+   /**
+   * TODO: Update PID errors based on cte.
+   **/
+    if (dt > 0.0) 
+       cte_d = (cte - cte_p)/dt;
+    else
+       cte_d = 0.0;
+  
+    cte_p = cte;
+    cte_i += cte * dt;
+}
 
+double PID::TotalError() {
+   /**
+   * TODO: Calculate and return the total error
+    * The code should return a value in the interval [output_lim_mini, output_lim_maxi]
+   */
+    double control = Kp*cte_p + Ki*cte_i + Kd*cte_d; 
+    if (control > output_lim_max){
+        control = output_lim_max;
+
+    }  
+    else if (control < output_lim_min){
+        control = output_lim_min;
+    }  
+  
+    return control;
+}
+
+double PID::UpdateDeltaTime(double new_delta_time) {
+   /**
+   * TODO: Update the delta time with new value
+   */
+  dt = new_delta_time;
+}
