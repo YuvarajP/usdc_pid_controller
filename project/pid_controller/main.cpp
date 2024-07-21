@@ -301,7 +301,17 @@ int main ()
           * TODO (step 3): compute the steer error (error_steer) from the position and the desired trajectory
           **/
           // The error function is to compute the discrepancy between desired steering angle verus actual angle
-          error_steer = angle_between_points(x_position, y_position, x_points[x_points.size()-1], y_points[y_points.size()-1]) - yaw;
+          double dis_min = 10000.0;
+          for (int i = 0; i < x_points.size(); ++i) {
+              double act_dis = pow((x_position - x_points[i]), 2) + pow((y_position - y_points[i]), 2);
+              if (act_dis < dis_min) {
+                  dis_min = act_dis;
+                  close_id = i;
+                }
+            }
+          // The car should steer it's direction based on the yaw angle of car and the angle of current position and next pointg  
+          error_steer = angle_between_points(x_position, y_position, x_points[close_id], y_points[close_id]) - yaw;
+          // error_steer = angle_between_points(x_position, y_position, x_points[x_points.size()-1], y_points[y_points.size()-1]) - yaw;
 
 
           /**
