@@ -219,24 +219,39 @@ int main ()
   * TODO (Step 1): create pid (pid_steer) for steer command and initialize values
   **/
   PID pid_steer = PID();
-  // pid_steer.Init(0.25, 0.001, 0.7, 1.2, -1.2);
-  // pid_steer.Init(0.01, 0.01, 0.01, 1.2, -1.2);
-  // pid_steer.Init(0.05, 0.01, 0.01, 1.2, -1.2);
-  // pid_steer.Init(0.20, 0.01, 0.01, 1.2, -1.2);
-  // pid_steer.Init(0.20, 0.005, 0.01, 1.2, -1.2);
-  // pid_steer.Init(0.20, 0.0025, 0.01, 1.2, -1.2);
+  // pid_steer.Init(0.25, 0.001, 0.7, 1.2, -1.2); // collision
+  // pid_steer.Init(0.29, 0.008, 0.71, 1.2, -1.2); // collision
+
+  // pid_steer.Init(0.20, 0.02, 0.7, 1.2, -1.2); // collision
+
+  // pid_steer.Init(0.01, 0.01, 0.01, 1.2, -1.2); //bad
+  // pid_steer.Init(0.05, 0.01, 0.01, 1.2, -1.2); // divergence of error
+
+  // pid_steer.Init(0.20, 0.01, 0.01, 1.2, -1.2); // collision
+
+  // pid_steer.Init(0.20, 0.01, 0.01, 1.2, -1.2); // collision
+  // pid_steer.Init(0.20, 0.005, 0.01, 1.2, -1.2); // collision
+  
+  // pid_steer.Init(0.29, 0.008, 0.71, 1.2, -1.2); // collision
+
+  // pid_steer.Init(0.20, 0.0025, 0.01, 1.2, -1.2); // collision
+
+
   // pid_steer.Init(0.20, 0.001, 0.01, 1.2, -1.2);
+
+  
   // pid_steer.Init(0.20, 0.001, 0.05, 1.2, -1.2);
-  // pid_steer.Init(0.20, 0.001, 0.1, 1.2, -1.2);
-  pid_steer.Init(0.20, 0.001, 0.25, 1.2, -1.2);
-  // pid_steer.Init(0.20, 0.001, 0.5, 1.2, -1.2);
+  // pid_steer.Init(0.5, 0.005, 0.3, 1.2, -1.2); // very bad
+  // pid_steer.Init(0.20, 0.001, 0.1, 1.2, -1.2); // collision
+  // pid_steer.Init(0.20, 0.001, 0.25, 1.2, -1.2); // collision
+  pid_steer.Init(0.20, 0.001, 0.5, 1.2, -1.2); // collision but steady error is converging
   
   // initialize pid throttle
   /**
   * TODO (Step 1): create pid (pid_throttle) for throttle command and initialize values
   **/
   PID pid_throttle = PID();
-  pid_throttle.Init(0.20,0.001,0.02, 1, -1);
+  pid_throttle.Init(0.20, 0.001, 0.5, 1, -1);
 
   h.onMessage([&pid_steer, &pid_throttle, &new_delta_time, &timer, &prev_timer, &i, &prev_timer](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
   {
