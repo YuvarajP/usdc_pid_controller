@@ -302,6 +302,7 @@ int main ()
           **/
           // The error function is to compute the discrepancy between desired steering angle verus actual angle
           double dis_min = 10000.0;
+          int close_id = 0;
           for (int i = 0; i < x_points.size(); ++i) {
               double act_dis = pow((x_position - x_points[i]), 2) + pow((y_position - y_points[i]), 2);
               if (act_dis < dis_min) {
