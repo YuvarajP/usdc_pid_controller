@@ -31,6 +31,9 @@ void PID::Init(double Kpi, double Kii, double Kdi, double output_lim_maxi, doubl
    cte_d = 0.0; 
   
    dt = 0.0;
+
+   std::cout << "Kp= " << Kp << " Ki= " << Ki << " Kd= " << Kd << endl;
+   
 }
 
 

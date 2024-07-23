@@ -220,7 +220,10 @@ int main ()
   **/
   PID pid_steer = PID();
   // pid_steer.Init(0.25, 0.001, 0.7, 1.2, -1.2); // collision
-  pid_steer.Init(0.29, 0.008, 0.71, 1.2, -1.2); // t2
+  // pid_steer.Init(0.29, 0.008, 0.71, 1.2, -1.2); // t2
+  // pid_steer.Init(0.5, 0.008, 0.80, 1.2, -1.2); // collision
+
+  pid_steer.Init(0.5, 0.001, 0.9, 1.2, -1.2); // collision
 
   // pid_steer.Init(0.20, 0.02, 0.7, 1.2, -1.2); // collision
 
