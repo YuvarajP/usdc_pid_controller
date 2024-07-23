@@ -373,7 +373,7 @@ int main ()
           **/
           // modify the following line for step 2
           // The error function is the discrepancy between desired velocity v/s actual
-          error_throttle = v_points.back() - velocity;
+          error_throttle = v_points[close_id] - velocity;
 
           double throttle_output;
           double brake_output;
