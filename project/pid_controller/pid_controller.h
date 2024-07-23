@@ -52,7 +52,7 @@ public:
     /*
     * Initialize PID.
     */
-    void PID::Init(double Kpi, double Kii, double Kdi, double output_lim_maxi, double output_lim_mini);
+    void Init(double Kpi, double Kii, double Kdi, double output_lim_maxi, double output_lim_mini);
 
     /*
     * Update the PID error variables given cross track error.
