@@ -15,16 +15,16 @@ PID::PID() {}
 
 PID::~PID() {}
 
-void PID::Init(double Kpi, double Kii, double Kdi, double output_lim_maxi, double output_lim_mini) {
+void PID::Init(double Kp, double Ki, double Kd, double output_lim_max, double output_lim_min) {
    /**
    * TODO: Initialize PID coefficients (and errors, if needed)
    **/
-   Kp = Kpi;
-   Ki = Kii;
-   Kd = Kdi;
+   Kp = Kp;
+   Ki = Ki;
+   Kd = Kd;
      
-   output_lim_max = output_lim_maxi;
-   output_lim_min = output_lim_mini;
+   output_lim_max = output_lim_max;
+   output_lim_min = output_lim_min;
   
    cte_p = 0.0;
    cte_i = 0.0;
