@@ -224,7 +224,25 @@ int main ()
   // pid_steer.Init(0.5, 0.008, 0.80, 1.2, -1.2); // collision
 
   // pid_steer.Init(0.5, 0.001, 0.9, 1.2, -1.2); // collision
-     pid_steer.Init(0.45, 0.001, 0.8, 1.2, -1.2);
+  // pid_steer.Init(0.45, 0.001, 0.8, 1.2, -1.2); // collision, but tracking closer than 0.5
+
+    // pid_steer.Init(0.48, 0.001, 0.8, 1.2, -1.2); collision
+    // pid_steer.Init(0.49, 0.001, 0.8, 1.2, -1.2); //collision 
+    // pid_steer.Init(0.49, 0.01, 0.8, 1.2, -1.2); //collision 
+    // pid_steer.Init(0.49, 0.01, 0.9, 1.2, -1.2); //collision 
+    // pid_steer.Init(0.35, 0.01, 0.9, 1.2, -1.2); // collision
+    // pid_steer.Init(0.47, 0.01, 0.9, 1.2, -1.2); // collision
+    // pid_steer.Init(0.47, 0.01, 0.7, 1.2, -1.2); // collision
+    //  pid_steer.Init(0.5, 0.01, 0.9, 1.2, -1.2);  // collision
+    //  pid_steer.Init(0.55, 0.01, 0.9, 1.2, -1.2);  // collision
+    //  pid_steer.Init(0.60, 0.01, 0.9, 1.2, -1.2);  // collision
+    //  pid_steer.Init(0.70, 0.01, 0.9, 1.2, -1.2);  // collision
+    //  pid_steer.Init(0.72, 0.01, 0.9, 1.2, -1.2);  // collision
+    //  pid_steer.Init(0.72, 0.01, 0.8, 1.2, -1.2);  // collision, best so far
+    //  pid_steer.Init(0.72, 0.02, 0.8, 1.2, -1.2);  // avoided collision
+    // pid_steer.Init(0.72, 0.02, 0.7, 1.2, -1.2);  // avoided collision
+    // pid_steer.Init(0.72, 0.02, 0.7, 1.2, -1.2);  // avoided collision
+    pid_steer.Init(0.47, 0.02, 0.7, 1.2, -1.2);  // avoided collision
 
   // pid_steer.Init(0.20, 0.02, 0.7, 1.2, -1.2); // collision
 
@@ -256,7 +274,8 @@ int main ()
   **/
   PID pid_throttle = PID();
   // pid_throttle.Init(0.20, 0.001, 0.02, 1, -1); // did not work great
-  pid_throttle.Init(0.12, 0.001, 0.019, 1, -1); // t2
+  // pid_throttle.Init(0.12, 0.001, 0.019, 1, -1); // most tried out option
+  pid_throttle.Init(0.35, 0.02, 0.8, 1, -1); //still shows the spike latest trial
 
 
   h.onMessage([&pid_steer, &pid_throttle, &new_delta_time, &timer, &prev_timer, &i, &prev_timer](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
