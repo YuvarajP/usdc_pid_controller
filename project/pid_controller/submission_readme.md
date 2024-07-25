@@ -7,9 +7,10 @@
 ### Analyzing a plot.
     - A few lines explaining the plots and describing what is plotted: the variables, the phenomenon shown
         - screenshot folder contains the plots
-        - aligned_steering.png : shows that tuning is aligned and tightly tuned. In reality this may not be desired situation as tight tuning for one scenario may not work very well for other un-anticipated scenarios
-        - throttle_final.png: shows final version of the tuned throttle controller. 
+        - screenshot/working_combo/steering*.png: shows that tuning is aligned and tightly tuned. In reality this may not be desired situation as tight tuning for one scenario may not work very well for other un-anticipated scenarios
+        - screenshot/working_combo/throttle*.png: shows final version of the tuned throttle controller. 
         - variables used in both plots show the desired steering vs actual steering (erro term), goal was to adjust the PID gain parameters to align the profile of throttle/steering.
+        - several earlier trial outputs are in screenshot/trial_output folder
 
     - A few lines answer the second question: What is the effect of the PID according to the plots, how each part of the PID affects the control command? The answer explains the role of the different parts of the PID.
         - Cross-track error (XTE) is a measurement of how far off course a car is from its intended path
