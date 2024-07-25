@@ -5,3 +5,12 @@
     - K_i values are quite small, which is generally good. Try values like 0.005 or 0.01.
 - Try with below adjusted parameters-
     - pid_steer.Init(0.45, 0.001, 0.8, 1.2, -1.2);
+
+
+# Tuning process
+    - Here are some steps for manually tuning a PID controller for a self-driving car:
+    - Start with default or small PID values
+    - Set the reset time to its maximum value and the rate to zero
+    - Gradually increase the proportional gain until the system starts to oscillate
+    - Adjust the integral gain to reduce steady-state error
+    - Tune the derivative gain to dampen overshoot 

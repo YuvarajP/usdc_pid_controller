@@ -219,7 +219,12 @@ int main ()
   * TODO (Step 1): create pid (pid_steer) for steer command and initialize values
   **/
   PID pid_steer = PID();
-    pid_steer.Init(0.47, 0.02, 0.7, 1.2, -1.2);  // avoided collision
+
+  // tried many values, many of those values are removed to reduce clutter, separate text file tuning_trial_params.txt
+  // pid_steer.Init(0.25, 0.001, 0.7, 1.2, -1.2); // collision
+  // pid_steer.Init(0.29, 0.008, 0.71, 1.2, -1.2); // collision
+  // pid_steer.Init(0.5, 0.008, 0.80, 1.2, -1.2); // collision
+  // pid_steer.Init(0.47, 0.02, 0.7, 1.2, -1.2); collision
   
   // initialize pid throttle
   /**
@@ -228,7 +233,7 @@ int main ()
   PID pid_throttle = PID();
   // pid_throttle.Init(0.20, 0.001, 0.02, 1, -1); // did not work great
   // pid_throttle.Init(0.12, 0.001, 0.019, 1, -1); // most tried out option
-  pid_throttle.Init(0.30, 0.005, 0.5, 1, -1); //still shows the spike latest trial
+  pid_throttle.Init(0.35, 0.02, 0.8, 1, -1); //still shows the spike latest trial
 
 
   h.onMessage([&pid_steer, &pid_throttle, &new_delta_time, &timer, &prev_timer, &i, &prev_timer](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
@@ -304,6 +309,7 @@ int main ()
           * TODO (step 3): compute the steer error (error_steer) from the position and the desired trajectory
           **/
           // The error function is to compute the discrepancy between desired steering angle verus actual angle
+          // Find a nearest coordinates to find the next steering angle/velocity 
           double dis_min = 10000.0;
           int close_id = 0;
           for (int i = 0; i < x_points.size(); ++i) {

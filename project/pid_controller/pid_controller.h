@@ -18,9 +18,9 @@ public:
     * Errors
     */
   
-    double cte_p;   // previous CTE
-    double cte_i;   // integral error
-    double cte_d;   // derivative error
+    double cte_p;  // save the previous cross tack error (CTE)
+    double cte_i;   // cte of intergral term
+    double cte_d;   // cte of derivative term
 
     /*
     * Coefficients
@@ -32,13 +32,13 @@ public:
     /*
     * Output limits
     */
-    double output_lim_max;
-    double output_lim_min;
+    double output_lim_max; // upper bound of steering/throttle
+    double output_lim_min; // lower bound of steering/throttle
   
     /*
     * Delta time
     */
-    double dt;
+    double dt; // small delta time used for derivative and integrals of CTE
     /*
     * Constructor
     */
